@@ -1,4 +1,4 @@
-const API_BASE = "https://travel-journal-36fb.onrender.com"
+const API_BASE = "https://travel-journal-36fb.onrender.com/api"
 
 
 function authHeader() {
