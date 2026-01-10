@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pamiętnik podróży</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="images/icon-192.png">
+  <meta name="theme-color" content="#0288d1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0288d1">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+
+    <!-- auth login -->
+    <section id="login-view" class="view">
+      <h2>Zaloguj się</h2>
+
+      <input id="loginEmail" type="email" placeholder="Email">
+      <input id="loginPassword" type="password" placeholder="Hasło">
+      <button id="loginBtn">Zaloguj</button>
+
+      <p>Nie masz konta?
+        <button id="goToRegister" class="link-btn">Zarejestruj się</button>
+      </p>
+    </section>
+
+    <!-- auth regitser -->
+    <section id="register-view" class="view">
+      <h2>Rejestracja</h2>
+
+      <input id="regEmail" type="email" placeholder="Email">
+      <input id="regPassword" type="password" placeholder="Hasło">
+      <input id="regPassword2" type="password" placeholder="Powtórz hasło">
+
+      <button id="registerBtn">Załóż konto</button>
+
+      <p>Masz już konto?
+        <button id="goToLogin" class="link-btn">Zaloguj się</button>
+      </p>
+    </section>
+
+    <!-- historia wpisow -->
+    <section id="history-view" class="view">
+
+      <div class="header-bar">
+        <button id="logoutBtn" class="header-btn left">➜]</button>
+        <h1 class="app-title">🌴 Twoje Podróże 🌴</h1>
+        <button id="addEntryBtn" class="header-btn right">＋</button>
+      </div>
+
+      <ul id="entriesList"></ul>
+    </section>
+
+   <!-- dodawanie i edycja wpisu --> 
+    <section id="add-view" class="view">
+
+      <h2 id="formTitle">Nowy wpis</h2>
+
+      <div class="preview-container">
+        <img id="preview" alt="Podgląd zdjęcia">
+        <button id="removePhoto" title="Usuń zdjęcie">x</button>
+      </div>
+
+      <input type="text" id="title" placeholder="Tytuł podróży">
+
+      <button id="changePhotoBtn" title="Zmień miniaturę">📸 Zmień miniaturę</button>
+
+      <textarea id="desc" placeholder="Opisz swoją podróż..."></textarea>
+
+      <div class="gallery-section">
+        <h3>Galeria zdjęć</h3>
+        <div id="gallery"></div>
+        <button id="addGalleryPhotos">🖼️ Dodaj zdjęcia do galerii</button>
+      </div>
+
+      <div class="form-buttons">
+        <button id="saveEntry">💾 Zapisz</button>
+        <button id="cancelAdd">❌ Anuluj</button>
+      </div>
+    </section>
+
+    <!-- szczegoly wpisu -->
+    <section id="details-view" class="view">
+      <h2>Szczegóły</h2>
+
+      <h3 id="detailTitle"></h3>
+      <img id="detailImage" alt="">
+
+      <p id="detailDesc"></p>
+
+      <p><strong>Lokalizacja: </strong><span id="detailLocation"></span></p>
+      <p><strong>Data: </strong><span id="detailDate"></span></p>
+
+      <div id="detailGallery"></div>
+
+      <div class="detail-buttons">
+        <button id="editDetail">✏️ Edytuj</button>
+        <button id="deleteDetail">🗑️ Usuń</button>
+        <button id="backToHistory">↩ Powrót</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- inputy -->
+  <input type="file" id="nativeCamera" accept="image/*" capture="environment" hidden>
+  <input type="file" id="fileInput" accept="image/*" hidden>
+  <input type="file" id="galleryCamera" accept="image/*" capture="environment" hidden multiple>
+  <input type="file" id="galleryFileInput" accept="image/*" hidden multiple>
+
+  <!-- dodaj zdjecie -->
+  <div id="photoModal" class="modal" role="dialog">
+    <div class="modal-content">
+      <h3>Wybierz źródło zdjęcia</h3>
+      <button id="modalCamera">📷 Zrób zdjęcie</button>
+      <button id="modalGallery">🖼️ Wybierz z galerii</button>
+      <button id="modalClose" class="close-btn">Anuluj</button>
+    </div>
+  </div>
+
+  <!-- modal galerii -->
+  <div id="galleryModal" class="modal" role="dialog">
+    <div class="modal-content">
+      <h3>Dodaj zdjęcia</h3>
+      <button id="galleryModalCamera">📷 Zrób zdjęcia</button>
+      <button id="galleryModalGallery">🖼️ Wybierz z galerii</button>
+      <button id="galleryModalClose" class="close-btn">Anuluj</button>
+    </div>
+  </div>
+
+  <!-- lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span id="lightboxClose" class="lightbox-close">&times;</span>
+    <img id="lightboxImage" src="" alt="">
+    <button id="lightboxPrev" class="lightbox-nav prev">&#10094;</button>
+    <button id="lightboxNext" class="lightbox-nav next">&#10095;</button>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

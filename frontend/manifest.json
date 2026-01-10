@@ -1,0 +1,38 @@
+{
+  "name": "Pamiętnik podróży",
+  "short_name": "Podróże",
+  "description": "Aplikacja do zapisywania podróży, zdjęć i wspomnień.",
+
+  "start_url": "/index.html",
+  "scope": "/",
+
+  "display": "standalone",
+  "orientation": "portrait",
+
+  "theme_color": "#0288d1",
+  "background_color": "#ffffff",
+
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Dodaj wpis",
+      "short_name": "Nowy wpis",
+      "description": "Przejdź do formularza dodawania wpisu",
+      "url": "/index.html#add"
+    }
+  ]
+}
