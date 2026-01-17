@@ -15,9 +15,12 @@ export function setupCameraInputs(previewEl, removeBtnEl) {
     previewEl.src = url;
     removeBtnEl.style.display = "flex";
 
+    previewEl.onload = () => { //zwolnienie pamięci
+    URL.revokeObjectURL(url);
+    };
+
     // stan
     setMainImageFile(file);
-    setMainImagePreview(url);
   };
 
   nativeCamera.onchange = handleMainPhoto;

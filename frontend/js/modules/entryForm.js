@@ -2,6 +2,7 @@ import { setupCameraInputs, setupGalleryInputs } from "../camera.js";
 import { renderGalleryPreview } from "../gallery.js";
 import { getLocation } from "../location.js";
 import { createOrUpdateEntry, refreshEntries } from "../entries.js";
+import { showToast } from "../toast.js"; //zamiast alert
 import { showView } from "../ui.js";
 
 import {
@@ -106,8 +107,14 @@ function handleGalleryPhotos(files) {
   const updatedPreview = [...galleryPreview];
 
   for (let f of files) {
+    const url = URL.createObjectURL(f);
+
     updatedFiles.push(f);
-    updatedPreview.push(URL.createObjectURL(f));
+    updatedPreview.push(url);
+
+    const img = new Image();
+    img.src = url;
+    img.onload = () => URL.revokeObjectURL(url); //zwolnienie pamięci
   }
 
   setGalleryFiles(updatedFiles);
@@ -118,12 +125,13 @@ function handleGalleryPhotos(files) {
 
 
 
+
 //zapis
 async function saveHandler() {
   const title = document.getElementById("title").value.trim();
   const desc = document.getElementById("desc").value.trim();
 
-  if (!title || !desc) return alert("Wpisz tytuł oraz opis");
+  if (!title || !desc) return showToast("Wpisz tytuł oraz opis"); //toast zamiast alert
 
   let coords;
   try { coords = await getLocation(); }

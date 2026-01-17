@@ -2,6 +2,7 @@ import { showView } from "../ui.js";
 import { removeEntryById, refreshEntries } from "../entries.js";
 import { entriesCache, currentDetailIndex, setCurrentEditId } from "../state.js";
 import { fillEditForm } from "./entryForm.js";
+import { confirmModal } from "../confirmModal.js"
 
 export function setupDetailsView() {
 
@@ -25,7 +26,8 @@ export function setupDetailsView() {
     const entry = entriesCache[currentDetailIndex];
     if (!entry) return;
 
-    if (!confirm("Usunąć ten wpis?")) return;
+    const ok = await confirmModal("Usunąć ten wpis?"); //modal zamiast confirm
+    if (!ok) return;
 
     await removeEntryById(entry._id);
     await refreshEntries();

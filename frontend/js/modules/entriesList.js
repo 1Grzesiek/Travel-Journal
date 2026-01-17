@@ -1,6 +1,7 @@
 import { showView } from "../ui.js";
 import { showDetails } from "../details.js";
 import { removeEntryById } from "../entries.js";
+import { confirmModal } from "../confirmModal.js"
 
 
 export function setupEntriesList() {
@@ -36,7 +37,8 @@ export function renderEntries(entries = []) {
     delBtn.onclick = async (ev) => {
       ev.stopPropagation(); 
 
-      if (!confirm("Usunąć ten wpis?")) return;
+      const ok = await confirmModal("Usunąć ten wpis?"); //modal zamiast confirm
+      if (!ok) return;
 
       await removeEntryById(entry._id);
 
