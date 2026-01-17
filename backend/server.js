@@ -26,3 +26,8 @@ app.get("/", (req, res) => res.json({ ok: true }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
+
+app.use((err, req, res, next) => {
+  console.error("GLOBAL ERROR:", err);
+  res.status(500).json({ message: "Internal Server Error" });
+});
